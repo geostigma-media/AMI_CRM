@@ -1,0 +1,21 @@
+#texto {
+  padding: 4px;
+  background: #fff;
+}
+
+span.error {
+  color: #9f3a38;
+}
+.error {
+  color: #9f3a38;
+}
+#tabla_filter {
+  text-align: end;
+}
+.txtMenu,
+#icon-nav {
+  color: #fff !important;
+}
+.breadcrumb{
+  justify-content: flex-end
+}

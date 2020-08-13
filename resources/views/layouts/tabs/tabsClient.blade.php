@@ -7,29 +7,29 @@
           <table class="table">
             <thead>
               <tr>
-                  <th>Nombre completo</th>
-                  <th>Numero de ID</th>
-                  <th>Ciudad</th>
-                  <th>Dirección</th>
-                  <th>Telefono</th>
-                  <th>Correo</th>
-                  <th>Fecha de contrato</th>
+                <th>Nombre completo</th>
+                <th>Numero de ID</th>
+                <th>Ciudad</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Fecha de contrato</th>
               </tr>
-              </thead>
-              <tbody>
-                @foreach ($clientesAsesor as $client)
-                  <tr>
-                    <td>{{$client->name}}</td>
-                    <td>{{$client->numIdenficication}}</td>
-                    <td>{{$client->city}}</td>
-                    <td>{{$client->addrees}}</td>
-                    <td>{{$client->phone}}</td>
-                    <td>{{$client->email}}</td>
-                    <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
-                  </tr>
-                @endforeach
+            </thead>
+            <tbody>
+              @foreach ($clientesAsesor as $client)
+              <tr>
+                <td>{{$client->name}}</td>
+                <td>{{$client->numIdenficication}}</td>
+                <td>{{$client->city}}</td>
+                <td>{{$client->addrees}}</td>
+                <td>{{$client->phone}}</td>
+                <td>{{$client->email}}</td>
+                <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
+              </tr>
+              @endforeach
 
-              </tbody>
+            </tbody>
           </table>
         </div>
       </div>
@@ -50,14 +50,14 @@
               <select class="form-control datoCliente select2" onchange="dataClient()" style="width: 100%" name="nombreEstudiante">
                 <option value=""></option>
                 @foreach ($clients as $client)
-                  <option value="{{$client->id}}">{{$client->name}}</option>
+                <option value="{{$client->id}}">{{$client->name}}</option>
                 @endforeach
               </select>
-            <input type="hidden" name="email" id="email"/>
-            <input type="hidden" name="scholl" id="scholl"/>
-            <input type="hidden" name="nombre" id="nombre"/>
-            <input type="hidden" name="idtemplate" id="idtemplate"/>
-            <input type="hidden" name="linkPago" id="link"/>
+              <input type="hidden" name="email" id="email" />
+              <input type="hidden" name="scholl" id="scholl" />
+              <input type="hidden" name="nombre" id="nombre" />
+              <input type="hidden" name="idtemplate" id="idtemplate" />
+              <input type="hidden" name="linkPago" id="link" />
             </div>
           </div>
           <div class="form-group">
@@ -65,7 +65,7 @@
             <select class="form-control select2" onchange="dataTemplateEmailSendContractAsesor()" style="width: 100%" name="tipoContrato" id="tipoContrato">
               <option value=""></option>
               @foreach ($contracts as $contract)
-                <option value="{{$contract->id}}">{{$contract->title}}</option>
+              <option value="{{$contract->id}}">{{$contract->title}}</option>
               @endforeach
             </select>
           </div>
@@ -74,7 +74,7 @@
             <input type="text" class="form-control" name="linkPago" id="linkPago" placeholder="Ingresa el link de pago" />
           </div> --}}
           <div class="form-group">
-              <input type="hidden" name="emailAsesor" id="emailAsesor" value="{{Auth()->user()->email}}" />
+            <input type="hidden" name="emailAsesor" id="emailAsesor" value="{{Auth()->user()->email}}" />
           </div>
           <button type="submit" id="infopago" class="btn btn-success btn-block"> Enviar email </button>
         </form>
@@ -96,12 +96,12 @@
               <select class="form-control datoClienteEmail select2" onchange="dataClientEmial()" style="width: 100%" name="nombreEstudiante">
                 <option value=""></option>
                 @foreach ($allClientsAsesor as $client)
-                  <option value="{{$client->id}}">{{$client->name}}</option>
+                <option value="{{$client->id}}">{{$client->name}}</option>
                 @endforeach
               </select>
-            <input type="hidden" name="email" id="emailEmail"/>
-            <input type="hidden" name="name" id="nameEmail"/>
-            <input type="hidden" name="idtemplate" id="idtemplateEmial"/>
+              <input type="hidden" name="email" id="emailEmail" />
+              <input type="hidden" name="name" id="nameEmail" />
+              <input type="hidden" name="idtemplate" id="idtemplateEmial" />
             </div>
           </div>
           <div class="form-group">
@@ -109,7 +109,7 @@
             <select class="form-control select2" onchange="dataTemplateEmailSendEmialPromotion()" style="width: 100%" name="tipoContrato" id="promocion">
               <option value=""></option>
               @foreach ($emailsPromotions as $contract)
-                <option value="{{$contract->id}}">{{$contract->title}}</option>
+              <option value="{{$contract->id}}">{{$contract->title}}</option>
               @endforeach
             </select>
           </div>
@@ -125,5 +125,5 @@
 <script>
   $(document).ready(function() {
     $('.table').DataTable();
-} );
+  });
 </script>

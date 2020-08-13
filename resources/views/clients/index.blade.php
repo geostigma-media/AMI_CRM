@@ -1,15 +1,19 @@
 @extends('layouts.app')
 @section('content')
 <style>
-@media (max-width: 992px) {
-  .btncelular {
-    display: block !important;
+  @media (max-width: 992px) {
+    .btncelular {
+      display: block !important;
+    }
+
+    .btngrande {
+      display: none;
+    }
+
+    .breadcrumb {
+      margin-top: -22px !important;
+    }
   }
-  .btngrande{
-    display:none;
-  }
-  .breadcrumb{margin-top: -22px !important;}
-}
 </style>
 <div class="page-wrapper">
   <div class="container-fluid">
@@ -24,19 +28,19 @@
             <li class="breadcrumb-item active">Clientes</li>
             <li class="breadcrumb-item">
               <a type="button" class="btn btn-info btngrande" data-toggle="modal" data-target="#exampleModal">
-              <i class="fa fa-plus-circle"></i> Agregar cliente</a>
+                <i class="fa fa-plus-circle"></i> Agregar cliente</a>
               <a type="button" class="btn btn-info btncelular  btn-circle" data-toggle="modal" style="display:none" data-target="#exampleModal">
-              <i class="fa fa-plus-circle"></i></a>
+                <i class="fa fa-plus-circle"></i></a>
             </li>
             @if (Auth()->user()->role == 1)
-              <li class="btngrande">
-                <a href="{{ route('loadExcel') }}" class="btn btn-success btngrande ml-2">
+            <li class="btngrande">
+              <a href="{{ route('loadExcel') }}" class="btn btn-success btngrande ml-2">
                 <i class="fa fa-file-excel"></i> Descargar Datos</a>
-              </li>
-              <li class="btncelular" style="display:none">
-                <a href="{{ route('loadExcel') }}" class="btn btn-success btn-circle ml-2">
+            </li>
+            <li class="btncelular" style="display:none">
+              <a href="{{ route('loadExcel') }}" class="btn btn-success btn-circle ml-2">
                 <i class="fa fa-file-excel"></i></a>
-              </li>
+            </li>
             @endIf
           </ol>
         </div>
@@ -47,157 +51,157 @@
         <div class="card">
           <div class="card-body">
             @if($errors->any())
-              <div class="alert alert-danger" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-                @foreach($errors->all() as $error)
-                  {{ $error }}<br/>
-                @endforeach
-              </div>
+            <div class="alert alert-danger" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              @foreach($errors->all() as $error)
+              {{ $error }}<br />
+              @endforeach
+            </div>
             @endif
             @if(Session::has('message'))
-              <div class="alert alert-success">
-                {!! Session::get('message') !!}
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              </div>
+            <div class="alert alert-success">
+              {!! Session::get('message') !!}
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            </div>
             @endif
             @if (Auth()->user()->role == 1)
             <h2>Estudiantes Matriculados</h2>
-              <div class="table-responsive">
-                <table class="table" id="tabla">
-                  <thead>
-                    <tr>
-                      <th>Nombre completo</th>
-                      <th>Numero de ID</th>
-                      <th>Ciudad</th>
-                      <th>Dirección</th>
-                      <th>Telefono</th>
-                      <th>Tipo de Contrato</th>
-                      <th>Asesor</th>
-                      <th>Fecha de Registro</th>
-                      <th>Seguimiento</th>
-                      @if (Auth()->user()->role == 1)
-                        <th>Editar</th>
-                      @endIf
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($clientsListAdmin as $client)
-                      <tr>
-                        <td>{{$client->name}}</td>
-                        <td>{{$client->numIdenficication}}</td>
-                        <td>{{$client->city}}</td>
-                        <td>{{$client->addrees}}</td>
-                        <td>{{$client->phone}}</td>
-                        <td>{{$client->titleContract}}</td>
-                        <td>{{$client->asesor->name}}</td>
-                        <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
-                        <td>
-                          <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
-                        </td>
-                        @if (Auth()->user()->role == 1)
-                          <td>
-                            <a class="btn btn-warning btn-sm" href="{{ route('clientsEdit',$client->id) }}">Editar</a>
-                          </td>
-                        @endif
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-            @else
-              <h2>Seguimiento de mis Clientes Matriculados</h2>
-              <div class="table-responsive">
-                <table class="table" id="tabla">
-                  <thead>
-                    <tr>
-                      <th>Nombre completo</th>
-                      <th>Numero de ID</th>
-                      <th>Ciudad</th>
-                      <th>Dirección</th>
-                      <th>Telefono</th>
-                      <th>Correo</th>
-                      <th>Tipo de contrato</th>
-                      <th>Asesor</th>
-                      <th>Fecha de Registro</th>
-                      <th>Seguimiento</th>
-                      @if (Auth()->user()->role == 1)
-                        <th>Editar</th>
-                      @endIf
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($clientsListAsesorMatriculado as $client)
-                      <tr>
-                        <td>{{$client->name}}</td>
-                        <td>{{$client->numIdenficication}}</td>
-                        <td>{{$client->city}}</td>
-                        <td>{{$client->addrees}}</td>
-                        <td>{{$client->phone}}</td>
-                        <td>{{$client->email}}</td>
-                        <td>{{$client->titleContract}}</td>
-                        <td>{{$client->asesor->name}}</td>
-                        <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
-                        <td>
-                          <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
-                        </td>
-                        @if (Auth()->user()->role == 1)
-                          <td>
-                            <a class="btn btn-warning btn-sm" href="{{ route('clientsEdit',$client->id) }}">Editar</a>
-                          </td>
-                        @endif
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-
-              <h2>Seguimiento de mis Clientes Pendientes por Matricular</h2>
-              <div class="table-responsive">
-                <table class="table" id="tabla">
-                  <thead>
-                    <tr>
-                      <th>Nombre completo</th>
-                      <th>Numero de ID</th>
-                      <th>Ciudad</th>
-                      <th>Dirección</th>
-                      <th>Telefono</th>
-                      <th>Correo</th>
+            <div class="table-responsive">
+              <table class="table" id="tabla">
+                <thead>
+                  <tr>
+                    <th>Nombre completo</th>
+                    <th>Numero de ID</th>
+                    <th>Ciudad</th>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
                     <th>Tipo de Contrato</th>
-                      <th>Asesor</th>
-                      <th>Fecha de Registro</th>
-                      <th>Seguimiento</th>
-                      @if (Auth()->user()->role == 1)
-                        <th>Editar</th>
-                      @endIf
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($clientsListAsesorSinMatricula as $client)
-                      <tr>
-                        <td>{{$client->name}}</td>
-                        <td>{{$client->numIdenficication}}</td>
-                        <td>{{$client->city}}</td>
-                        <td>{{$client->addrees}}</td>
-                        <td>{{$client->phone}}</td>
-                        <td>{{$client->email}}</td>
-                        <td>{{$client->titleContract}}</td>
-                        <td>{{$client->asesor->name}}</td>
-                        <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
-                        <td>
-                          <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
-                        </td>
-                        @if (Auth()->user()->role == 1)
-                          <td>
-                            <a class="btn btn-warning btn-sm" href="{{ route('clientsEdit',$client->id) }}">Editar</a>
-                          </td>
-                        @endif
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
+                    <th>Asesor</th>
+                    <th>Fecha de Registro</th>
+                    <th>Seguimiento</th>
+                    @if (Auth()->user()->role == 1)
+                    <th>Editar</th>
+                    @endIf
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($clientsListAdmin as $client)
+                  <tr>
+                    <td>{{$client->name}}</td>
+                    <td>{{$client->numIdenficication}}</td>
+                    <td>{{$client->city}}</td>
+                    <td>{{$client->addrees}}</td>
+                    <td>{{$client->phone}}</td>
+                    <td>{{$client->titleContract}}</td>
+                    <td>{{$client->asesor->name}}</td>
+                    <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
+                    <td>
+                      <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
+                    </td>
+                    @if (Auth()->user()->role == 1)
+                    <td>
+                      <a class="btn btn-warning btn-sm" href="{{ route('clientsEdit',$client->id) }}">Editar</a>
+                    </td>
+                    @endif
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+            @else
+            <h2>Seguimiento de mis Clientes Matriculados</h2>
+            <div class="table-responsive">
+              <table class="table" id="tabla">
+                <thead>
+                  <tr>
+                    <th>Nombre completo</th>
+                    <th>Numero de ID</th>
+                    <th>Ciudad</th>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Tipo de contrato</th>
+                    <th>Asesor</th>
+                    <th>Fecha de Registro</th>
+                    <th>Seguimiento</th>
+                    @if (Auth()->user()->role == 1)
+                    <th>Editar</th>
+                    @endIf
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($clientsListAsesorMatriculado as $client)
+                  <tr>
+                    <td>{{$client->name}}</td>
+                    <td>{{$client->numIdenficication}}</td>
+                    <td>{{$client->city}}</td>
+                    <td>{{$client->addrees}}</td>
+                    <td>{{$client->phone}}</td>
+                    <td>{{$client->email}}</td>
+                    <td>{{$client->titleContract}}</td>
+                    <td>{{$client->asesor->name}}</td>
+                    <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
+                    <td>
+                      <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
+                    </td>
+                    @if (Auth()->user()->role == 1)
+                    <td>
+                      <a class="btn btn-warning btn-sm" href="{{ route('clientsEdit',$client->id) }}">Editar</a>
+                    </td>
+                    @endif
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+
+            <h2>Seguimiento de mis Clientes Pendientes por Matricular</h2>
+            <div class="table-responsive">
+              <table class="table" id="tabla">
+                <thead>
+                  <tr>
+                    <th>Nombre completo</th>
+                    <th>Numero de ID</th>
+                    <th>Ciudad</th>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Tipo de Contrato</th>
+                    <th>Asesor</th>
+                    <th>Fecha de Registro</th>
+                    <th>Seguimiento</th>
+                    @if (Auth()->user()->role == 1)
+                    <th>Editar</th>
+                    @endIf
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($clientsListAsesorSinMatricula as $client)
+                  <tr>
+                    <td>{{$client->name}}</td>
+                    <td>{{$client->numIdenficication}}</td>
+                    <td>{{$client->city}}</td>
+                    <td>{{$client->addrees}}</td>
+                    <td>{{$client->phone}}</td>
+                    <td>{{$client->email}}</td>
+                    <td>{{$client->titleContract}}</td>
+                    <td>{{$client->asesor->name}}</td>
+                    <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
+                    <td>
+                      <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
+                    </td>
+                    @if (Auth()->user()->role == 1)
+                    <td>
+                      <a class="btn btn-warning btn-sm" href="{{ route('clientsEdit',$client->id) }}">Editar</a>
+                    </td>
+                    @endif
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
             @endIf
           </div>
         </div>
@@ -205,57 +209,57 @@
         <div class="card">
           <div class="card-body">
             @if(Session::has('message'))
-              <div class="alert alert-success">
-                {!! Session::get('message') !!}
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              </div>
+            <div class="alert alert-success">
+              {!! Session::get('message') !!}
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            </div>
             @endif
             @if (Auth()->user()->role == 1)
-              <h2>Estudiantes Por Asesor</h2>
-              <div class="table-responsive">
-                <table class="table" id="tabla">
-                  <thead>
-                    <tr>
-                      <th>Nombre completo</th>
-                      <th>Numero de ID</th>
-                      <th>Ciudad</th>
-                      <th>Dirección</th>
-                      <th>Telefono</th>
-                      <th>Correo</th>
+            <h2>Estudiantes Por Asesor</h2>
+            <div class="table-responsive">
+              <table class="table" id="tabla">
+                <thead>
+                  <tr>
+                    <th>Nombre completo</th>
+                    <th>Numero de ID</th>
+                    <th>Ciudad</th>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
                     <th>Tipo de Contrato</th>
-                      <th>Asesor</th>
-                      <th>Fecha de Registro</th>
-                      <th>Seguimiento</th>
-                      @if (Auth()->user()->role == 1)
-                        <th>Editar</th>
-                      @endIf
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($clientsList as $client)
-                      <tr>
-                        <td>{{$client->name}}</td>
-                        <td>{{$client->numIdenficication}}</td>
-                        <td>{{$client->city}}</td>
-                        <td>{{$client->addrees}}</td>
-                        <td>{{$client->phone}}</td>
-                        <td>{{$client->email}}</td>
-                        <td>{{$client->titleContract}}</td>
-                        <td>{{$client->asesor->name}}</td>
-                        <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
-                        <td>
-                          <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
-                        </td>
-                        @if (Auth()->user()->role == 1)
-                          <td>
-                            <a class="btn btn-warning btn-sm" href="{{ route('clientsEdit',$client->id) }}">Editar</a>
-                          </td>
-                        @endif
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
+                    <th>Asesor</th>
+                    <th>Fecha de Registro</th>
+                    <th>Seguimiento</th>
+                    @if (Auth()->user()->role == 1)
+                    <th>Editar</th>
+                    @endIf
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($clientsList as $client)
+                  <tr>
+                    <td>{{$client->name}}</td>
+                    <td>{{$client->numIdenficication}}</td>
+                    <td>{{$client->city}}</td>
+                    <td>{{$client->addrees}}</td>
+                    <td>{{$client->phone}}</td>
+                    <td>{{$client->email}}</td>
+                    <td>{{$client->titleContract}}</td>
+                    <td>{{$client->asesor->name}}</td>
+                    <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
+                    <td>
+                      <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
+                    </td>
+                    @if (Auth()->user()->role == 1)
+                    <td>
+                      <a class="btn btn-warning btn-sm" href="{{ route('clientsEdit',$client->id) }}">Editar</a>
+                    </td>
+                    @endif
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
             @endIf
 
           </div>
@@ -275,47 +279,22 @@
         </button>
       </div>
       <div class="modal-body">
-        <form
-          class="ui form"
-          action="{{route('createClient')}}"
-          id="formCliente"
-          method="POST">
+        <form class="ui form" action="{{route('createClient')}}" id="formCliente" method="POST">
           {{ method_field('post') }}
           {{csrf_field()}}
           <input type="hidden" name="asesorId" id="asesorId" value="{{Auth()->user()->id}}" />
           <div class="alert alert-info" role="alert">
             <div class="form-group">
               <label>Nombre Completo del Titular del Contrato</label>
-              <input
-                value="{{ old('name') }}"
-                type="text"
-                class="form-control"
-                name="name"
-                id="name"
-                placeholder="Nombre Completo del Titular"
-              />
+              <input value="{{ old('name') }}" type="text" class="form-control" name="name" id="name" placeholder="Nombre Completo del Titular" />
             </div>
             <div class="form-group">
               <label>Teléfono</label>
-              <input
-                value="{{ old('phone') }}"
-                type="text"
-                class="form-control"
-                name="phone"
-                id="phone"
-                placeholder="Telefono"
-              />
+              <input value="{{ old('phone') }}" type="text" class="form-control" name="phone" id="phone" placeholder="Telefono" />
             </div>
             <div class="form-group">
               <label>Correo Electrónico</label>
-              <input
-                value="{{ old('email') }}"
-                type="email"
-                class="form-control"
-                name="email"
-                id="email"
-                placeholder="Correo Electronico"
-              />
+              <input value="{{ old('email') }}" type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" />
             </div>
           </div>
           <div class="form-group">
@@ -324,42 +303,21 @@
           </div>
           <div class="form-group">
             <label>Dirección</label>
-            <input
-              value="{{ old('addrees') }}"
-              type="text"
-              class="form-control"
-              name="addrees"
-              id="addrees"
-              placeholder="Dirección"
-            />
+            <input value="{{ old('addrees') }}" type="text" class="form-control" name="addrees" id="addrees" placeholder="Dirección" />
           </div>
           <div class="form-group">
             <label>Ciudad</label>
-            <input
-              value="{{ old('city') }}"
-              type="text"
-              class="form-control"
-              name="city"
-              id="city"
-              placeholder="Ciudad"
-            />
+            <input value="{{ old('city') }}" type="text" class="form-control" name="city" id="city" placeholder="Ciudad" />
           </div>
           <div class="form-group">
             <label>No de identificación</label>
-            <input
-              value="{{ old('numIdenficication') }}"
-              type="text"
-              class="form-control"
-              name="numIdenficication"
-              id="numIdenficication"
-              placeholder="no Identificación"
-            />
+            <input value="{{ old('numIdenficication') }}" type="text" class="form-control" name="numIdenficication" id="numIdenficication" placeholder="Número de identificación" />
           </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
       </div>
     </div>
   </div>

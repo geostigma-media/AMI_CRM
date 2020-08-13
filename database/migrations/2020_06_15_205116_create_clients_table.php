@@ -36,7 +36,6 @@ class CreateClientsTable extends Migration
       $table->string('identificacionRef2')->nullable();
       $table->string('ocupacionRef2')->nullable();
       $table->string('fechaNacRef2')->nullable();
-      $table->string('email')->unique()->nullable();
       $table->longText('contract')->nullable();
       $table->string('scholl')->nullable();
       $table->string('pay')->nullable();

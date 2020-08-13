@@ -31,6 +31,7 @@ class ClientsController extends Controller
 
   public function store(ClientsRequest $request)
   {
+
     Clients::create($request->all())->save();
     Session::flash('message', 'Cliente registrado con Exito');
     return redirect()->route('clients');

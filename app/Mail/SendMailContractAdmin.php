@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Clients;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class SendMailContractAdmin extends Mailable
 
   public function build(Request $request)
   {
-    $contract = $request->all();
+    $contract = Clients::where('email', $request->email)->first();
     return $this->view('emails.contractAdmin', compact('contract'));
   }
 }

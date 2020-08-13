@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Clients extends Model
 {
-  protected $guarded = [];
+  protected $guarded = ['clientId'];
 
   public function asesor()
   {

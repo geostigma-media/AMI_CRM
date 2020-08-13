@@ -124,11 +124,18 @@ if ($("#formEgresos").length > 0) {
 if ($("#contratoForm").length > 0) {
   $("#contratoForm").validate({
     rules: {
-      // numIdenficication: { required: true },
-      // phone: { required: true },
-      // terminos: { required: true },
-      // terminosCompra: { required: true },
-      // terminosCusro: { required: true },
+      numIdenficication: { required: true },
+      phone: { required: true },
+      empresa_nombre: { required: true },
+      empresa_direccion: { required: true },
+      referencia_nombre: { required: true },
+      referencia_direccion: { required: true },
+      referencia_telefono: { required: true },
+      referencia_ocupacion: { required: true },
+      referencia_tipo: { required: true },
+      terminos: { required: true },
+      terminosCompra: { required: true },
+      terminosCusro: { required: true },
     },
   });
 }

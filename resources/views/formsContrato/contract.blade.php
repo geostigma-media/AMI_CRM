@@ -3,6 +3,7 @@
 @section('content')
 <div>
   <div class="container shadow p-4 mb-5 bg-white rounded">
+  <img src="{{ asset('img/logo.png') }}" alt="homepage" style="width: 95%" class="light-logo mx-auto d-block">
     <div class="row">
       <div class="col-md-12 formcontent">
         <h1 class="text-center mb-4">INFORMACION DEL CONTRATO</h1>

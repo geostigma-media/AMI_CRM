@@ -181,18 +181,7 @@
               </div>
             </div>
           </div>
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <b>GARANTÍA AMI PROFESIONAL Y AMI SEMIPROFESIONAL: LECTOR AMI COLOMBIA </b> dará al beneficiario asesoría especializada durante 4 meses a partir de la fecha en
-              que se inicien las asesorías, el alumno se compromete a realizar las prácticas que el profesional le estipule, al igual asistir dos veces por semana una hora por cada clase para
-              recibir sus asesoría. Esto es importante para poder garantizar el resultado de las habilidades antes mencionadas. En caso de no lograr las habilidades en el tiempo estipulado,
-              podrá continuar con las asesorías hasta que desarrolle la habilidad teniendo como máximo 4 meses adicionales sin incremento en el pago. Nota: Solo si la persona cumple con
-              las condiciones del programa. Asistir dos veces por semana y realizar las practicas que la monitora indique. Es importante mencionar que los pagos de cuota inicial y mensual
-              dados no se pueden suspender bajo ninguna circunstancia. No se aceptan devoluciones. Una vez iniciado, debe cancelar la totalidad del programa asista ó no, es su
-              responsabilidad. GARANTÍAAMI KIDS: Este programa tiene una duración de 10 meses completos, en caso de no culminar los objetivos planteados en el formato de verificación
-              se otorgarán 2 meses adicionales para la finalización del mismo siempre y cuando haya cumplido con las condiciones establecidas.
-            </div>
-          </div>
+          <br>
           <textarea name="contract" style="display: none;" id="contract"></textarea>
           <button type="submit" id="pago" class="btn btn-success btn-lg btn-block">
             Enviar Contrato

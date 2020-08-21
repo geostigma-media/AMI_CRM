@@ -66,7 +66,7 @@ class ContractController extends Controller
     $client->save();
 
     Mail::to($request->email)->send(new  SendMailContractClient());
-    Mail::to('gerencia@geostigmamedia.com')->send(new SendMailContractAdmin());
+    Mail::to('gerencia@lectorami.com')->send(new SendMailContractAdmin());
     Session::flash('message', 'Correo electronico enviado y Cliente registrado con exito');
     return Redirect::to('https://marketing.lectorami.co/');
   }

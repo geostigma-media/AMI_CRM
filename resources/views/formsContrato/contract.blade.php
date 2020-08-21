@@ -155,11 +155,11 @@
                     sujeta a los Términos de Servicio que se encuentran publicados
                     en correo electrónico enviado por la Compañía, los cuales se
                     consideran parte integrante del presente documento.</p>
-                  PAGO
+                  <br>
                   <p class="textoContrato">
                     {{$cnt->firstText}}
                   </p>
-                  RENOVACIÓN AUTOMÁTICA
+                 <br>
                   <p class="textoContrato">
                     {{$cnt->secondText}}
                   </p>

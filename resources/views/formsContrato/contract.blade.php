@@ -142,7 +142,7 @@
               <div id='contenido' style="height: auto !important;">
                 @foreach ($contract as $cnt)
                 <h4 class="textoContrato">TÉRMINOS Y CONDICIONES DE COMPRA: CONTRATO CELEBRADO EL {{$date_now}} ENTRE
-                  <span class="textoContrato" id="nombreContrato"> </span>
+                  <span class="textoContrato text-uppercase" id="nombreContrato"> </span>
                   <span class="textoContrato"> Y LECTOR AMI .</span></h4>
                   <p class="textoContrato">Por favor, lea los siguientes términos y condiciones de compra
                     con detenimiento (colectivamente, las &quot;Condiciones de Compra&quot;).

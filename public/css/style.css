@@ -3,14 +3,12 @@ Template Name: Admin Template
 Author: Niravjoshi / Wrappixel
 File: scss
 */
-@import url(
-  https://fonts.googleapis.com/css?family=Poppins:300,
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,
   400,
   500,
   600,
-  700
-);
-/*Theme Colors*/
+  700);
+
 /**
  * Table Of Content
  *
@@ -34,13 +32,11 @@ File: scss
 @import url(../../../assets/icons/themify-icons/themify-icons.css);
 @import url(../../../assets/icons/flag-icon-css/flag-icon.min.css);
 @import url(../../../assets/icons/material-design-iconic-font/css/materialdesignicons.min.css);
-@import url(
-  https://fonts.googleapis.com/css?family=Poppins:300,
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,
   400,
   500,
   600,
-  700
-);
+  700);
 .skin-default .topbar {
   background: #4f5467;
 }

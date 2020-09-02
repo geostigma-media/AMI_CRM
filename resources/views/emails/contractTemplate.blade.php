@@ -35,9 +35,11 @@
     <h3 style="text-align: center;">{{ $client->name }} Gracias por elegirnos.</h3>
     <img style='display: block; width: 100%; padding-bottom: 40px;' src="{{ asset('img/01.png') }}">
     <img style='display: block; width: 100%; padding-bottom: 40px;' src=" {{ asset('img/02.png') }}">
+    @if ($contract->id == 1 )
     <img style='display: block; width: 100%; padding-bottom: 40px;' src="{{ asset('img/03.png') }}">
     <img style='display: block; width: 100%; padding-bottom: 40px;' src=" {{ asset('img/04.png') }}">
     <p>{{$templateEmail->firstText}}</p>
+    @endif
 
     <img src="{{asset('images/'.$templateEmail->image)}}" style="width: 100%" alt="">
 

@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Clients;
 use App\Contracts;
-use App\Mail\LectorAmiContado;
-use App\Mail\lectorAmiCuotas;
-use App\Mail\MailSendemailpayDefault;
+use App\Mail\LectorAmiContrato;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -75,19 +73,8 @@ class HomeController extends Controller
   {
 
     if ($request->email) {
-      if ($request->tipoContrato == "1") {
-        Mail::to($request->email)->send(new LectorAmiContado());
-        Session::flash('message', 'Correo electronico enviado con exito');
-        return redirect()->route('home');
-      } elseif ($request->tipoContrato == "2" || $request->tipoContrato == "3") {
-        Mail::to($request->email)->send(new lectorAmiCuotas());
-        Session::flash('message', 'Correo electronico enviado con exito');
-        return redirect()->route('home');
-      } else {
-        Mail::to($request->email)->send(new MailSendemailpayDefault());
-        Session::flash('message', 'Correo electronico enviado con exito');
-        return redirect()->route('home');
-      }
+      Mail::to($request->email)->send(new LectorAmiContrato());
+      return redirect()->route('home');
     } else {
       Session::flash('messageErrorEmail', 'Ocurrio un error, por favor selecciona nuevamente el cliente o actualiza la pagina');
       return redirect()->route('home');

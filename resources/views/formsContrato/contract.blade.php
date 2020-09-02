@@ -3,12 +3,12 @@
 @section('content')
 <div>
   <div class="container shadow p-4 mb-5 bg-white rounded">
-  <div style="background: #195fa5; padding: 7px; margin-bottom: 7px;">
-  <img src="{{ asset('img/logo.png') }}" alt="homepage" class="light-logo mx-auto d-block">
-  </div>
+    <div style="background: #195fa5; padding: 7px; margin-bottom: 7px;">
+      <img src="{{ asset('img/logo.png') }}" alt="homepage" class="light-logo mx-auto d-block">
+    </div>
     <div class="row">
       <div class="col-md-12 formcontent">
-        <h1 class="text-center mb-4">INFORMACION DEL CONTRATO</h1>
+        <h1 class="text-center mb-4">INFORMACIÓN DEL CONTRATO</h1>
         <h3>Informacion personal</h3>
         <form class="ui form" action="{{route('contractPay')}}" id="contratoForm" method="POST">
           {{ method_field('post') }}
@@ -144,43 +144,18 @@
             overflow-y: scroll !important;">
               <div id='contenido' style="height: auto !important;">
                 @foreach ($contract as $cnt)
-                <h4 class="textoContrato">TÉRMINOS Y CONDICIONES DE COMPRA: CONTRATO CELEBRADO EL {{$date_now}} ENTRE
-                  <span class="textoContrato text-uppercase" id="nombreContrato"> </span>
-                  <span class="textoContrato"> Y LECTOR AMI .</span></h4>
-                  <p class="textoContrato">Por favor, lea los siguientes términos y condiciones de compra
-                    con detenimiento (colectivamente, las &quot;Condiciones de Compra&quot;).
-                    Estas Condiciones de Compra constituyen un acuerdo legal y
-                    vinculante entre usted y Lector AMI (la &quot;Compañía&quot;) en relación
-                    con la compra de 1 Programa(s) lectura Inteligente por (12)
-                    mes(es) de Conexión (el &quot;Programa&quot;) ofrecido por la Compañía
-                    de acuerdo con el interés demostrado por Ud. en su visita a la
-                    página web. www.marketing.lectorami.co. Esta adquisición, está
-                    sujeta a los Términos de Servicio que se encuentran publicados
-                    en correo electrónico enviado por la Compañía, los cuales se
-                    consideran parte integrante del presente documento.</p>
-                  <br>
-                  <p class="textoContrato">
-                    {{$cnt->firstText}}
-                  </p>
-                  <br>
-                  <p class="textoContrato">
-                    {{$cnt->secondText}}
-                  </p>
-                  <p class="textoContrato">Si usted tiene alguna pregunta o comentario sobre estas
-                    condiciones de Compra, por favor, no dude en contactar a un
-                    asesor de la Compañía a través de llamada telefónica al número
-                    3213202115 o a través de los medios de contacto publicados en
-                    la página web <a href="https://www.lectorami.com" target="_blank">www.lectorami.com</a>.</p>
-                  <p class="textoContrato">NOTIFICACIONES A LECTOR AMI ACADEMIA</p>
-                  <p class="textoContrato">Att: Asuntos Legales y Comerciales</p>
-                  <p class="textoContrato">CARRERA 11 # 22N-10 POPAYAN</p>
-                  <p class="textoContrato">Colombia</p>
-                  <p class="textoContrato">3213202115 LINEA NACIONAL Whatsapp</p>
-                  <p class="textoContrato">* El Suscriptor</p>
-                  <p class="textoContrato">LECTOR AMI La Compañía</p>
 
-                  <p class="textoContrato">*Por firma electrónica a las {{$date_now_hours}} </p>
-                  @endforeach
+                <p class="textoContrato">
+                  {{$cnt->firstText}}
+                </p>
+                <br>
+                <p class="textoContrato">
+                  {{$cnt->secondText}}
+                </p>
+
+
+                <p class="textoContrato">*Por firma electrónica a las {{$date_now_hours}} </p>
+                @endforeach
               </div>
             </div>
           </div>

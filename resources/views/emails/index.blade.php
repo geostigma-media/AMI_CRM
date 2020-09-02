@@ -9,23 +9,23 @@
       </div>
       <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-              <li class="breadcrumb-item active">Plantillas de Correos</li>
-              <li class="breadcrumb-item">
-                @if ($templatesEmailCount == 13)
-                  <button type="button" class="btn btn-danger btngrande" disabled>
-                  <i class="fa fa-dismit"></i> Limite de Plantillas</button>
-                  <button type="button" class="btn btn-danger btncelular btn-circle" disabled>
-                  <i class="fa fa-dismit"></i></button>
-                @else
-                  <button type="button" class="btn btn-info btngrande" data-toggle="modal" data-target="#exampleModal">
-                  <i class="fa fa-plus-circle"></i> Agregar Plantilla</button>
-                  <button type="button" class="btn btn-info btncelular btn-circle" data-toggle="modal" data-target="#exampleModal">
-                  <i class="fa fa-plus-circle"></i> </button>
-                @endif
-              </li>
-            </ol>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item active">Plantillas de Correos</li>
+            <li class="breadcrumb-item">
+              @if ($templatesEmailCount == 13)
+              <button type="button" class="btn btn-danger btngrande" disabled>
+                <i class="fa fa-dismit"></i> Limite de Plantillas</button>
+              <button type="button" class="btn btn-danger btncelular btn-circle" disabled>
+                <i class="fa fa-dismit"></i></button>
+              @else
+              <button type="button" class="btn btn-info btngrande" data-toggle="modal" data-target="#exampleModal">
+                <i class="fa fa-plus-circle"></i> Agregar Plantilla</button>
+              <button type="button" class="btn btn-info btncelular btn-circle" data-toggle="modal" data-target="#exampleModal">
+                <i class="fa fa-plus-circle"></i> </button>
+              @endif
+            </li>
+          </ol>
 
         </div>
       </div>
@@ -35,10 +35,10 @@
         <div class="card">
           <div class="card-body">
             @if(Session::has('message'))
-              <div class="alert alert-success">
-                {!! Session::get('message') !!}
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              </div>
+            <div class="alert alert-success">
+              {!! Session::get('message') !!}
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            </div>
             @endif
             <div class="table-responsive">
               <table class="table">
@@ -53,21 +53,21 @@
                 </thead>
                 <tbody>
                   @foreach ($templatesEmail as $item)
-                    <tr>
-                      <th scope="row">{{$item->title}}</th>
-                      <td>{{$item->firstText}}</td>
-                      <td>{{$item->type == 1 ? 'Plantilla Pago' : 'Plantilla Contrato'}}</td>
-                      <td>
-                        <a class="btn btn-warning" href="{{ route('editPlantilla',$item->id) }}">Editar</a>
-                      </td>
-                      <td>
-                        <form class="user"  action="{{route('deleteEmail', $item->id)}}" method="post">
-                          {{ method_field('delete') }}
-                          {{csrf_field()}}
-                          <button class="btn btn-btn-outline-light"  onclick="return confirm('¿Esta seguro de eliminar este registro?')"  type="submit">ELIMINAR</button>
-                        </form>
-                      </td>
-                    </tr>
+                  <tr>
+                    <th scope="row">{{$item->title}}</th>
+                    <td>{{$item->firstText}}</td>
+                    <td>{{$item->type == 1 ? 'Plantilla Pago' : 'Plantilla Contrato'}}</td>
+                    <td>
+                      <a class="btn btn-warning" href="{{ route('editPlantilla',$item->id) }}">Editar</a>
+                    </td>
+                    <td>
+                      <form class="user" action="{{route('deleteEmail', $item->id)}}" method="post">
+                        {{ method_field('delete') }}
+                        {{csrf_field()}}
+                        <button class="btn btn-btn-outline-light" onclick="return confirm('¿Esta seguro de eliminar este registro?')" disabled="disabled">ELIMINAR</button>
+                      </form>
+                    </td>
+                  </tr>
                   @endforeach
                 </tbody>
               </table>
@@ -89,7 +89,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form  action="{{route('store')}}" id="formEmails" method="POST" enctype="multipart/form-data">
+        <form action="{{route('store')}}" id="formEmails" method="POST" enctype="multipart/form-data">
           {{csrf_field()}}
           <div class="form-group">
             <label for="title">Titulo</label>
@@ -107,7 +107,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="submit" class="btn btn-primary">Guardar</button>
-      </form>
+        </form>
       </div>
     </div>
   </div>

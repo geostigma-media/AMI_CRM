@@ -93,17 +93,17 @@
   <div class="container">
     <div class="row">
       <div class="col-12 formcontent">
-        <h1>Confirmación de Inscripción</h1>
+        <h1>Enviar contrato</h1>
         <form class="ui form" id="formularioInfoPago" action="{{route('sendinfopay')}}" method="POST">
           {{ method_field('post') }}
           {{csrf_field()}}
           <div class="alert alert-info" role="alert">
-            <label>Información del Titular del Contrato</label>
+            <label>Información del titular del Contrato</label>
             <div class="form-group col-md-12">
               <select class="form-control datoCliente select2" onchange="dataClient()" style="width: 100%" name="nombreEstudiante">
                 <option value=""></option>
                 @foreach ($allClients as $client)
-                <option value="{{$client->id}}">{{$client->name}}</option>
+                <option value="{{$client->id}}">{{$client->name}} ({{$client->email}})</option>
                 @endforeach
               </select>
               <input type="hidden" name="email" id="email" />
@@ -139,7 +139,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 formcontent">
-        <h1>Envio de correos promocionales</h1>
+        <h1>Enviar correos promocionales</h1>
         <form class="ui form" id="formularioInfoPago" action="{{route('sendinfopay')}}" method="POST">
           {{ method_field('post') }}
           {{csrf_field()}}

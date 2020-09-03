@@ -49,11 +49,13 @@ class ContractController extends Controller
 
   public function updateContract(Request $request, $id)
   {
+
     $contract = Contracts::find($id);
     $contract->title = $request->title;
     $contract->firstText = $request->firstText;
     $contract->secondText = $request->secondText;
     $contract->link = $request->link;
+    $contract->emailId = $request->emailId;
     $contract->save();
     Session::flash('message', 'Contrato editado con exito');
     return redirect()->route('contracs');

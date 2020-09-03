@@ -14,6 +14,7 @@
                 <th>Telefono</th>
                 <th>Correo</th>
                 <th>Fecha de contrato</th>
+                <th>Seguimiento</th>
               </tr>
             </thead>
             <tbody>
@@ -26,6 +27,9 @@
                 <td>{{$client->phone}}</td>
                 <td>{{$client->email}}</td>
                 <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
+                <td>
+                  <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
+                </td>
               </tr>
               @endforeach
 

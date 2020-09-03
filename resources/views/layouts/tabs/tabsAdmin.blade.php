@@ -16,6 +16,11 @@
                 <th>Tipo de Contrato</th>
                 <th>Asesor</th>
                 <th>Fecha de contrato</th>
+                <th>Seguimiento</th>
+
+                @if (Auth()->user()->role == 1)
+                <th>Editar</th>
+                @endIf
               </tr>
             </thead>
             <tbody>
@@ -30,6 +35,14 @@
                 <td>{{$client->titleContract}}</td>
                 <td>{{$client->asesor->name}}</td>
                 <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
+                <td>
+                  <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
+                </td>
+                @if (Auth()->user()->role == 1)
+                <td>
+                  <a class="btn btn-warning btn-sm" href="{{ route('clientsEdit',$client->id) }}">Editar</a>
+                </td>
+                @endif
               </tr>
               @endforeach
             </tbody>

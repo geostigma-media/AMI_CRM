@@ -73,14 +73,17 @@
                 <thead>
                   <tr>
                     <th>Nombre completo</th>
-                    <th>Numero de ID</th>
+                    <th>Número de documento</th>
+
                     <th>Ciudad</th>
                     <th>Dirección</th>
-                    <th>Telefono</th>
+                    <th>Teléfono</th>
                     <th>Tipo de Contrato</th>
                     <th>Asesor</th>
-                    <th>Fecha de Registro</th>
+                    <th>Fecha de registro</th>
+                    <th>Correo electónico</th>
                     <th>Seguimiento</th>
+
                     @if (Auth()->user()->role == 1)
                     <th>Editar</th>
                     @endIf
@@ -91,12 +94,14 @@
                   <tr>
                     <td>{{$client->name}}</td>
                     <td>{{$client->numIdenficication}}</td>
+
                     <td>{{$client->city}}</td>
                     <td>{{$client->addrees}}</td>
                     <td>{{$client->phone}}</td>
                     <td>{{$client->titleContract}}</td>
                     <td>{{$client->asesor->name}}</td>
                     <td>{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</td>
+                    <td>{{$client->email}}</td>
                     <td>
                       <a href="{{ route('tracing',$client->id) }}"><i class="fas fa-eye"></i></a>
                     </td>

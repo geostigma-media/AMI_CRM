@@ -74,6 +74,7 @@ class HomeController extends Controller
 
     if ($request->email) {
       Mail::to($request->email)->send(new LectorAmiContrato());
+      Session::flash('message', 'Correo electronico enviado con exito');
       return redirect()->route('home');
     } else {
       Session::flash('messageErrorEmail', 'Ocurrio un error, por favor selecciona nuevamente el cliente o actualiza la pagina');

@@ -2,14 +2,15 @@
 
 @section('content')
 <style>
-@media (max-width: 992px) {
-  .btncelular {
-    display: block !important;
+  @media (max-width: 992px) {
+    .btncelular {
+      display: block !important;
+    }
+
+    .btngrande {
+      display: none;
+    }
   }
-  .btngrande{
-    display:none;
-  }
-}
 </style>
 <div class="page-wrapper">
   <div class="container-fluid">
@@ -23,10 +24,10 @@
             <li class="breadcrumb-item"><a href="/">Inicio</a></li>
             <li class="breadcrumb-item active">Contratos</li>
             <li class="breadcrumb-item">
-              <button type="button" class="btn btn-info btngrande"  data-toggle="modal" data-target="#exampleModal">
-              <i class="fa fa-plus-circle"></i> Agregar Contrato</button>
-              <button type="button" class="btn btn-info btncelular btn-circle"  data-toggle="modal" data-target="#exampleModal">
-              <i class="fa fa-plus-circle"></i> </button>
+              <button type="button" class="btn btn-info btngrande" data-toggle="modal" data-target="#exampleModal">
+                <i class="fa fa-plus-circle"></i> Agregar Contrato</button>
+              <button type="button" class="btn btn-info btncelular btn-circle" data-toggle="modal" data-target="#exampleModal">
+                <i class="fa fa-plus-circle"></i> </button>
             </li>
           </ol>
         </div>
@@ -37,10 +38,10 @@
         <div class="card">
           <div class="card-body">
             @if(Session::has('message'))
-              <div class="alert alert-success">
-                {!! Session::get('message') !!}
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              </div>
+            <div class="alert alert-success">
+              {!! Session::get('message') !!}
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            </div>
             @endif
             <div class="table-responsive">
               <table class="table" id="tabla">
@@ -53,25 +54,25 @@
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($contracts as $contract)
-                      <tr>
-                        <td>{{$contract->id}}</td>
-                        <td>{{$contract->title}}</td>
-                        <td>{{Str::limit($contract->firstText),10}}</td>
-                        <td>{{Str::limit($contract->secondText),10}}</td>
-                        <td><a  class="btn btn-warning" href="{{ route('editContract',$contract->id) }}">Editar</a></td>
-                        <td>
-                          <form class="user"  action="{{route('deleteContract', $contract->id)}}" method="post">
-                            {{ method_field('delete') }}
-                            {{csrf_field()}}
-                            <button class="btn btn-btn-outline-light"  onclick="return confirm('¿Esta seguro de eliminar este registro?')"  type="submit">ELIMINAR</button>
-                          </form>
-                        </td>
-                      </tr>
-                    @endforeach
-                  </tbody>
+                </thead>
+                <tbody>
+                  @foreach ($contracts as $contract)
+                  <tr>
+                    <td>{{$contract->id}}</td>
+                    <td>{{$contract->title}}</td>
+                    <td>{{Str::limit($contract->firstText),10}}</td>
+                    <td>{{Str::limit($contract->secondText),10}}</td>
+                    <td><a class="btn btn-warning" href="{{ route('editContract',$contract->id) }}">Editar</a></td>
+                    <td>
+                      <form class="user" action="{{route('deleteContract', $contract->id)}}" method="post">
+                        {{ method_field('delete') }}
+                        {{csrf_field()}}
+                        <button class="btn btn-btn-outline-light" onclick="return confirm('¿Esta seguro de eliminar este registro?')" type="submit">ELIMINAR</button>
+                      </form>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
               </table>
             </div>
           </div>
@@ -114,7 +115,7 @@
             <select class="form-control select2" name="emailId" style="width: 100%" id="emailId">
               <option value="">Debes seleccionar una opción</option>
               @foreach ($templatesEmail as $template)
-                <option value="{{$template->id}}">{{$template->title}}</option>
+              <option value="{{$template->id}}">{{$template->title}}</option>
               @endforeach
             </select>
           </div>
@@ -122,7 +123,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="submit" class="btn btn-primary">Guardar</button>
-      </form>
+        </form>
 
       </div>
     </div>

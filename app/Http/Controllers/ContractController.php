@@ -18,7 +18,7 @@ class ContractController extends Controller
   public function index()
   {
     $contracts = Contracts::all();
-    $templatesEmail = TemplateEmail::where('id', '>', 2)->get();
+    $templatesEmail = TemplateEmail::all();
     return view('formsContrato.index', compact('contracts', 'templatesEmail'));
   }
 
@@ -43,7 +43,7 @@ class ContractController extends Controller
   public function editContract(Request $request, $id)
   {
     $contract = Contracts::with('emails')->find($id);
-    $templatesEmail = TemplateEmail::where('id', '>', 2)->get();
+    $templatesEmail = TemplateEmail::all();
     return view('formsContrato.edit', compact('contract', 'templatesEmail'));
   }
 

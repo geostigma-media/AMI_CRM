@@ -165,8 +165,10 @@
               </div>
 
 
-
+              <h3>Contrato</h3>
+              <h4>Número de contrato # <strong>{{$client->id}}</strong></h4>
               <div class="form-group row">
+
                 <label for="phone" class="col-md-12 col-form-label">Contrato</label>
                 <div class="col-md-12">
                   <textarea class="form-control" id="" rows="10" style="resize: none" disabled>{{$client->contract}}</textarea>

@@ -12,6 +12,9 @@
   <h1> Un nuevo estudiante se ha registrado</h1>
   <ul>
     <li>
+      <p>Número de contrato: #{{ $client['clientId'] }}</p>
+    </li>
+    <li>
       <p>{{ $contract['name'] }}</p>
     </li>
     <li>

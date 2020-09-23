@@ -32,7 +32,9 @@
 <body>
   <div class="contenedor" style="width: 650px; background: #fff; margin: auto;">
     <h1 style="text-align: center; text-transform: uppercase; color: #205ea3">{{ $contract->title }}</h1>
-    <h3 style="text-align: center;">{{ $client->name }} Gracias por elegirnos.</h3>
+    <h2 style="text-align: center;">Número de contrato #{{ $client->id }}</h2>
+    <h2 style="text-align: center;">{{ $client->name }} Gracias por elegirnos.</h2>
+
     <img style='display: block; width: 100%; padding-bottom: 40px;' src="{{ asset('img/01.png') }}">
 
     <img src="{{asset('images/'.$templateEmail->image)}}" style="width: 100%" alt="">

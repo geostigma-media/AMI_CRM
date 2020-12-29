@@ -124,16 +124,13 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="SI" name="terminosCompra" id="terminosCompra" />
             <label class="form-check-label" for="terminosCompra">
-              Entiendo que los anteriores Términos de Compra tienen una
-              fecha de ejemplo del acuerdo final (el "contrato"). Reconozco
-              que recibiré el contrato efectivo final por correo electrónico
-              al recibir el pago.
+              Entiendo que los anteriores Términos de Compra tienen una fecha de ejemplo del acuerdo final (el "contrato"). Reconozco que recibiré el contrato efectivo final por correo electrónico al recibir el pago la entidad.
             </label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="SI" name="terminosCusro" id="terminosCusro" />
             <label class="form-check-label" for="terminosCusro">
-              Término del Curso: Entiendo y acepto que estoy comprando un programa de doce (12) meses por cuotas; y después que termine la duración, el programa se renovará automáticamente cada mes para que pueda continuar disfrutando el servicio.
+              Término del Curso: Entiendo y acepto que estoy comprando un programa de lectura online; y después que termine la duración, el programa se renovará automáticamente cada mes para que pueda continuar disfrutando el servicio.
             </label>
           </div>
           <br>

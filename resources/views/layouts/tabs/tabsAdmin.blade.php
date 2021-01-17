@@ -135,10 +135,6 @@
               @endforeach
             </select>
           </div>
-          {{-- <div class="form-group">
-            <label>Link de pago</label>
-            <input type="text" class="form-control" name="linkPago" id="linkPago" placeholder="Ingresa el link de pago" />
-          </div> --}}
           <div class="form-group">
             <input type="hidden" name="emailAsesor" id="emailAsesor" value="{{Auth()->user()->email}}" />
           </div>

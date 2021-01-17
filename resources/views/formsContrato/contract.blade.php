@@ -9,12 +9,21 @@
     <div class="row">
       <div class="col-md-12 formcontent">
         <h1 class="text-center mb-4">INFORMACIÓN DEL CONTRATO</h1>
+        @if($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <h3>Informacion personal</h3>
-        <form class="ui form" action="{{route('contractPay')}}" id="contratoForm" method="POST">
+        <form class="ui form" action="{{route('contractPay')}}" id="contratoForm" method="POST" enctype="multipart/form-data">
           {{ method_field('post') }}
           {{csrf_field()}}
-          <input type="hidden" name="asesorId" id="asesorId" value="{{$_GET["asesor"]}}" />
-          <input type="hidden" name="clientId" id="clientId" value="{{decrypt($_GET["idenClient"])}}" />
+          <input type="hidden" name="asesorId" id="asesorId" value="{{$_GET['asesor']}}" />
+          <input type="hidden" name="clientId" id="clientId" value="{{decrypt($_GET['idenClient'])}}" />
           <input type="hidden" name="titleContract" id="titleContract" value="{{$tituloContrato}}" />
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -42,8 +51,27 @@
             </div>
           </div>
 
+          <h3>Adjuntar documentos</h3>
+          <div class="form-row">
+            <div class="form-group  col-md-6">
+              <label>Foto cédula (Frente)</label>
+              <input type="file" name="front_photo_document" id="front_photo_document" class="form-control" accept="image/x-png,image/jpeg" >
+            </div>
+
+            <div class="form-group  col-md-6">
+              <label>Foto cédula (Trasera)</label>
+              <input type="file" name="back_photo_document" id="back_photo_document" class="form-control" accept="image/x-png,image/jpeg" >
+            </div>
+
+            <div class="form-group  col-md-6">
+              <label>Foto firma</label>
+              <input type="file" name="sign_photo" id="sign_photo" class="form-control" accept="image/x-png,image/jpeg" >
+            </div>
+          </div>
+         
           <hr>
           <h3>Información laboral</h3>
+          
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Nombre de la empresa</label>
@@ -93,7 +121,7 @@
             <h3>Beneficiario</h3>
             <div class="alert alert-warning">
               Si el producto que estas adquieriendo es para ser usado por un familiar o conocido, llena los siguiente campos
-              de lo contrario omitelos
+              de lo contrario puedes omitirlos.
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -140,6 +168,7 @@
             background: #f1f1f1 !important;
             overflow-y: scroll !important;">
               <div id='contenido' style="height: auto !important;">
+                Señor(a) {{$_GET['name']}} con número de identificacíon {{decrypt($_GET['numIdenficication'])}}
                 @foreach ($contract as $cnt)
 
                 <p class="textoContrato">

@@ -18,6 +18,8 @@ class SendMailContractClient extends Mailable
 
     public function build(Request $request)
     {
+      $this->subject('Lector AMI Contrato');
+
       $contract = $request->all();
       $templateEmails = TemplateEmail::where('type',2)->get();
 

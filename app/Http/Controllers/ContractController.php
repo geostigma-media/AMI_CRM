@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Clients;
 use App\Contracts;
 use App\Mail\SendMailContractAdmin;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ContractController extends Controller
 {
@@ -24,8 +26,6 @@ class ContractController extends Controller
 
   public function contract()
   {
-    $contractsCount = Contracts::count();
-    $s = $_GET['contrato'];
     $contract = Contracts::where('id', $_GET['contrato'])->get();
     $tituloContrato = $contract[0]->title;
     $date_now = date("Y-m-d");
@@ -57,12 +57,57 @@ class ContractController extends Controller
     $contract->link = $request->link;
     $contract->emailId = $request->emailId;
     $contract->save();
-    Session::flash('message', 'Contrato editado con exito');
+    Session::flash('message', 'Contrato editado con éxito');
     return redirect()->route('contracs');
   }
 
   public function contractPay(Request $request)
   {
+
+    $request->validate([
+      'numIdenficication' => 'required',
+      'front_photo_document' => 'required|mimes:jpeg,png|max:4028',
+      'back_photo_document' => 'required|mimes:jpeg,png|max:4028',
+      'sign_photo' => 'required|mimes:jpeg,png|max:4028',
+    ]);
+
+    $clientDocument = $request->numIdenficication;
+    
+    $imgFrontDocument = Image::make($request->front_photo_document)
+      ->resize(null, 500, function ($constraint) {
+        $constraint->aspectRatio();
+      })->encode('jpg', 65)
+      ->orientate();
+
+
+    $imgBackDocument = Image::make($request->back_photo_document)
+      ->resize(null, 500, function ($constraint) {
+        $constraint->aspectRatio();
+      })->encode('jpg', 65)
+      ->orientate();
+
+    $imgSign = Image::make($request->sign_photo)
+      ->resize(null, 500, function ($constraint) {
+        $constraint->aspectRatio();
+      })->encode('jpg', 65)
+      ->orientate();
+
+    $frontDocumentFilename = $clientDocument . '-foto-cedula-frente-' . time() . '.jpg';
+    $backDocumentFilename = $clientDocument . '-foto-cedula-trasera-' . time() . '.jpg';
+    $signFilename = $clientDocument . '-foto-firma-' . time() . '.jpg';
+    
+    
+
+    $imgFrontDocument->save(public_path('/documentos/' . $frontDocumentFilename));
+    $imgBackDocument->save(public_path('/documentos/' . $backDocumentFilename));
+    $imgSign->save(public_path('/documentos/' . $signFilename));
+
+
+    $request->request->add(['front_document_photo' => $frontDocumentFilename]);
+    $request->request->add(['back_document_photo' => $backDocumentFilename]);
+    $request->request->add(['sign_client_photo' => $signFilename]);
+    
+
     $client = Clients::find($request->clientId);
     $client->fill($request->all());
     $client->save();

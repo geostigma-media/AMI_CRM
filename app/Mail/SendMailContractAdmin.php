@@ -19,6 +19,8 @@ class SendMailContractAdmin extends Mailable
 
   public function build(Request $request)
   {
+    $this->subject('Nuevo Contracto AMI');
+
     $client = $request->all();
     $contract = Clients::where('email', $request->email)->first();
     return $this->view('emails.contractAdmin', compact('client', 'contract'));

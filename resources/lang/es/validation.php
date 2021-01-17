@@ -146,6 +146,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'front_photo_document' => "Foto cédula de frente",
+        'back_photo_document' => "Foto cédula trasera",
+        'sign_photo' => "Foto firma",
+    ],
 
 ];

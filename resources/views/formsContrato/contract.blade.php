@@ -168,7 +168,8 @@
             background: #f1f1f1 !important;
             overflow-y: scroll !important;">
               <div id='contenido' style="height: auto !important;">
-                Señor(a) {{$_GET['name']}} con número de identificacíon {{decrypt($_GET['numIdenficication'])}}
+                Yo {{$_GET['name']}} identificado con el documento número {{decrypt($_GET['numIdenficication'])}} entiendo
+                y acepto los siguientes términos y condiciones.
                 @foreach ($contract as $cnt)
 
                 <p class="textoContrato">

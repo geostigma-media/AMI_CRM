@@ -26,6 +26,8 @@ class ContractController extends Controller
 
   public function contract()
   {
+    $contractsCount = Contracts::count();
+    $s = $_GET['contrato'];
     $contract = Contracts::where('id', $_GET['contrato'])->get();
     $tituloContrato = $contract[0]->title;
     $date_now = date("Y-m-d");

@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <div class="row page-titles">
       <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Bienvendio</h4>
+        <h4 class="text-themecolor">Bienvendio </h4>
       </div>
       <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
@@ -34,7 +34,8 @@
                   </select>
                 </div>
               </div>
-              <h3>Información personal</h3>
+              <h3>Información personal </h3>
+              
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name" class="col-form-label">Nombres</label>
@@ -179,12 +180,42 @@
               <a href="{{ route('home') }}" class="btn btn-warning">Cancelar</a>
 
             </form>
+   
             <form class="user" action="{{route('deleteClient', $client->id)}}" method="post">
               {{ method_field('delete') }}
               {{csrf_field()}}
               <button class="btn btn-danger pull-right" onclick="return confirm('¿Esta seguro de eliminar este registro?')" type="submit">ELIMINAR</button>
             </form>
           </div>
+
+          <div class="container">
+          <h1>Documentos Cargados</h1>
+          <br>
+            <div class="row">
+               <div class="card col-4">
+                  <img src="https://crm.lectorami.co/public/documentos/{{$client->front_document_photo}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                 <h5 class="card-title">Foto frontal cedula</h5>
+                </div>
+               </div>
+               <div class="card col-4">
+                  <img src="https://crm.lectorami.co/public/documentos/{{$client->back_document_photo}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                 <h5 class="card-title">Foto Trasera cedula</h5>
+                </div>
+               </div>
+               <div class="card col-4">
+                  <img src="https://crm.lectorami.co/public/documentos/{{$client->sign_client_photo}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                 <h5 class="card-title">Firma</h5>
+                </div>
+               </div>
+             </div>
+           
+
+          </div>
+    
+
         </div>
       </div>
     </div>

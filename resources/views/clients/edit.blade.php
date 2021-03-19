@@ -189,28 +189,36 @@
           </div>
 
           <div class="container">
-          <h1>Documentos Cargados</h1>
-          <br>
-            <div class="row">
-               <div class="card col-4">
-                  <img src="https://crm.lectorami.co/public/documentos/{{$client->front_document_photo}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                 <h5 class="card-title">Foto frontal cedula</h5>
+            <h1 class="mb-4">Documentos Cargados</h1>
+            @if($client->front_document_photo)
+              <div class="row">
+                <div class="card col-4">
+                    <img src="https://crm.lectorami.co/public/documentos/{{$client->front_document_photo}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                  <h5 class="card-title">Foto frontal cedula</h5>
+                  </div>
                 </div>
-               </div>
-               <div class="card col-4">
-                  <img src="https://crm.lectorami.co/public/documentos/{{$client->back_document_photo}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                 <h5 class="card-title">Foto Trasera cedula</h5>
+                <div class="card col-4">
+                    <img src="https://crm.lectorami.co/public/documentos/{{$client->back_document_photo}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                  <h5 class="card-title">Foto Trasera cedula</h5>
+                  </div>
                 </div>
-               </div>
-               <div class="card col-4">
-                  <img src="https://crm.lectorami.co/public/documentos/{{$client->sign_client_photo}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                 <h5 class="card-title">Firma</h5>
+                <div class="card col-4">
+                    <img src="https://crm.lectorami.co/public/documentos/{{$client->sign_client_photo}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                  <h5 class="card-title">Firma</h5>
+                  </div>
                 </div>
-               </div>
-             </div>
+              </div>
+
+            @else
+              <div class="alert alert-info">
+                Este estudiante no tiene documentos cargados
+              </div>     
+            @endif
+            
+            
            
 
           </div>
